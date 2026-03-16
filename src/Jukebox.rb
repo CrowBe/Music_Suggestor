@@ -1,215 +1,138 @@
+# frozen_string_literal: true
+
 require "colorize"
+require_relative "music_recommender"
 
 class Jukebox
-    attr_reader :choice1, :choice2, :jukebox_running
-    def initialize
-        @user_name = nil
+  MOODS = [
+    "On top of the world",
+    "Blue",
+    "In love",
+    "Sleep deprived",
+    "Rage",
+    "A little high"
+  ].freeze
 
-        # Becomes 1 or 2 when user chooses mood or occasion, is nil so it can become a variable
-        @choice1 = nil
+  OCCASIONS = [
+    "Netflix & Chill",
+    "Dance Battle",
+    "Fantasy Board Game Night",
+    "Cosplay Party",
+    "Fancy Dinner Party",
+    "Hangin' Out With Garret"
+  ].freeze
 
-        # Becomes 1-6 when user chooses category under mood/occasion, is nil so it can become a variable
-        @choice2 = nil
+  def initialize
+    @recommender = MusicRecommender.new
+    @user_name = nil
+    @running = true
+  end
 
-        # Do we choose another song?
-        @choice3 = nil
+  def running?
+    @running
+  end
 
-        # Initiates the jukebox loop when we open the class
-        @jukebox_running = true
+  def greeting
+    puts "\n" + "╔══════════════════════════════════════╗".colorize(:light_magenta)
+    puts       "║   Ben & Mike's Song Suggestor  v2.0  ║".colorize(:light_magenta)
+    puts       "╚══════════════════════════════════════╝".colorize(:light_magenta)
 
-        # Create an array of moods to print
-        @moods = [
-            "1. On top of the world", 
-            "2. Blue", 
-            "3. In love", 
-            "4. Sleep deprived", 
-            "5. Rage", 
-            "6. A little high"
-        ]
-
-        # Create an array of occasions to print
-        @occasions = [
-            "1. Netflix & Chill", 
-            "2. Dance Battle", 
-            "3. Fantasy Board Game Night", 
-            "4. Cosplay Party", 
-            "5. Fancy Dinner Party", 
-            "6. Hangin' Out With Garret"
-        ]
-        
-        # A long series of arrays containing the songs associated with each mood or occasion
-
-        # Moods
-        on_top = [
-            ["Happy", "Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs"],
-            ["Hawaiian Roller Coaster Ride", "Mark Keali'i Ho'omalu, Kamehameha Schools Children's Chorus", "https://www.youtube.com/watch?v=KaLFZj3wPsc"]
-        ]
-        blue = [
-            ["Blue (Da Ba Dee)", "Eiffel 65", "https://www.youtube.com/watch?v=68ugkg9RePc"],
-            ["Born To Die", "Lana Del Rey", "https://www.youtube.com/watch?v=ORnYNaTZGUU"]
-        ]
-        in_love = [
-            ["You Are The Sunshine Of My Life", "Stevie Wonder", "https://www.youtube.com/watch?v=3wZ_b_uUAdQ"],
-            ["Just The Way You Are", "Bruno Mars", "https://www.youtube.com/watch?v=LjhCEhWiKXk&list=PLx3wWkQvD0wuLg05pvb6lwmpnzdW52bSH"]
-        ]
-        sleep = [
-            ["A Whole New World", "John McClung", "https://www.youtube.com/watch?v=-GN997853gc"],
-            ["Pua Lilelehua", "Keola Beamer", "https://www.youtube.com/watch?v=s0WyqmvAg7o"]
-        ]
-        rage = [
-            ["Kamikaze", "Eminem", "https://www.youtube.com/watch?v=FhF9RwkHAJw"],
-            ["Angel Of Death", "Slayer", "https://www.youtube.com/watch?v=K6_zsJ8KPP0"]
-        ]
-        high = [
-            ["Three Little Birds", "Bob Marley", "https://www.youtube.com/watch?v=LanCLS_hIo4"] , 
-            ["Party in My Tummy", "Yo Gabba Gabba!", "https://www.youtube.com/watch?v=6Os-CACRwM8"]
-        ]
-        
-        #  Occasions
-        netflix = [
-            ["Can't Get Enough Of Your Love Baby", "Barry White", "https://www.youtube.com/watch?v=x0I6mhZ5wMw"],
-            ["My Cherie Amour", "Stevie Wonder", "https://www.youtube.com/watch?v=NW0YcO5P3OM"]
-        ]
-        dance = [
-            ["It's Tricky", "Run-DMC", "https://www.youtube.com/watch?v=l-O5IHVhWj0"],
-            ["Boogie Shoes", "K.C. and Sunshine Band", "https://www.youtube.com/watch?v=6m47EQtAMzI"]
-        ]
-        board_game = [
-            ["Concerning Hobbits", "Howard Shore", "https://www.youtube.com/watch?v=0gLd7rpBJlY"],
-            ["Carmina Burana", "Carl Orff", "https://www.youtube.com/watch?v=GXFSK0ogeg4"]
-        ]
-        cosplay = [
-            ["Sailor Moon Theme", "Nicole and Brynne Price", "https://www.youtube.com/watch?v=5txHGxJRwtQ"],
-            ["Pokémon Theme", "Jason Paige", "https://www.youtube.com/watch?v=rg6CiPI6h2g"]
-        ]
-        fancy_dinner = [
-            ["Impromptu in G flat major D.899, Op. 90 - III. Andante mosso", "Franz Schubert", "https://www.youtube.com/watch?v=Nt33K-HsOHA"],
-            ["Piano Concerto No. 21 in C major, K. 467", "Wolfgang Amadeus Mozart", "https://www.youtube.com/watch?v=CVKpvD3X6EM"]
-        ]
-        hangin_garret = [
-            ["Southern Nights", "Glen Campbell", "https://www.youtube.com/watch?v=7wOUFo4Lwf8"],
-            ["I Just Want To Dance With You", "George Strait", "https://www.youtube.com/watch?v=HxxhNAyj3QQ"]
-        ]
-
-        # create an array with each category for Mood & Occasion
-        @mood_cat = [
-            on_top, 
-            blue, 
-            in_love, 
-            sleep, 
-            rage, 
-            high
-        ]
-        @occasion_cat = [
-            netflix, 
-            dance, 
-            board_game, 
-            cosplay, 
-            fancy_dinner, 
-            hangin_garret
-        ]
-        @list_choice = [@mood_cat, @occasion_cat]
-    end
-    # greets user in terminal and asks for name
-    def greeting
-        puts "Welcome to Ben & Mike's Song Suggestor!".colorize(:light_magenta)
-        puts "What can we call you by?".colorize(:light_cyan)
-        # user_name = user input
-        @user_name = gets.chomp.colorize(:light_white)
+    if @recommender.ai_available?
+      puts "  ✨ AI-powered recommendations enabled".colorize(:light_green)
+    else
+      puts "  📀 Running in curated mode (set ANTHROPIC_API_KEY for AI recommendations)".colorize(:yellow)
     end
 
-    def choose
-        # until loops until @choice1 = 1 or 2
-        # inside the loops it asks the user to choose 1 or 2
-        puts "Hello #{@user_name}! Would you like to select a song for a Mood or an Occasion? "
-        puts "\n"
-        until [1, 2].include? @choice1
-            puts("  1. " + " Mood".colorize(:light_red))
-            puts("  2." + " Occasion".colorize(:light_yellow))
-            puts "\nInput the number of your choice."
-            @choice1 = gets.to_i
+    puts "\nWhat can we call you? ".colorize(:light_cyan)
+    @user_name = gets&.chomp&.strip
+    @user_name = nil if @user_name&.empty?
+  end
 
-            # If the user has input something other than 1 or 2 it will print this error statement
-            if ![1, 2].include? @choice1
-                puts "Sorry, I couldn't read that input, please enter the number of your choice."
-                puts "\n"
-            end
-        end
+  def choose_category_type
+    name = @user_name ? "#{@user_name}!" : "there!"
+    puts "\nHello #{name} Would you like a song for a:".colorize(:light_white)
+
+    choice = prompt_choice([
+      "  1.  Mood   ".colorize(:light_red),
+      "  2.  Occasion   ".colorize(:light_yellow)
+    ])
+
+    choice == 1 ? :mood : :occasion
+  end
+
+  def choose_category(type)
+    if type == :mood
+      puts "\nHow are you feeling?".colorize(:light_white)
+      items = MOODS
+      color = :light_red
+    else
+      puts "\nWhat's the occasion?".colorize(:light_white)
+      items = OCCASIONS
+      color = :light_yellow
     end
 
-    def choose_mood
-        # until @choice2 = 1 to length of moods(6), keep looping
-        # Inside the loops it keeps asking the user to select from a numbered list
-        puts "Are you feeling:"
-        puts "\n"
-        until (1..@moods.length).include? @choice2
-            @moods.each do |item| puts("  " + item.colorize(:light_red)) end
-            puts "\nInput the number of your choice."
-            @choice2 = gets.to_i
+    numbered = items.each_with_index.map { |name, i| "  #{i + 1}.  #{name}  ".colorize(color) }
+    index = prompt_choice(numbered) - 1
+    items[index]
+  end
 
-            # if choice2 != 1 to length of moods(6) print err msg
-            if !(1..@moods.length).include? @choice2
-                puts "Sorry, I couldn't read that input, please enter the number of your choice."
-                puts "\n"
-            end
-        end
+  def suggest_song(type, category_name)
+    puts "\n  🎵 Finding the perfect song...".colorize(:light_cyan) if @recommender.ai_available?
+
+    song = @recommender.recommend(
+      category_type: type,
+      category_name: category_name,
+      user_name: @user_name
+    )
+
+    if song
+      display_song(song)
+    else
+      puts "\n  Sorry, couldn't find a song for that selection.".colorize(:light_red)
+    end
+  end
+
+  def ask_for_another
+    puts "\n  Would you like another suggestion?".colorize(:light_white)
+    choice = prompt_choice([
+      "  1.  Yes, please!   ".colorize(:light_green),
+      "  2.  No thanks, I'm done   ".colorize(:light_red)
+    ])
+
+    if choice == 1
+      @running = true
+    else
+      @running = false
+      puts "\nThanks for using Ben & Mike's Song Suggestor! Enjoy the music! 🎶\n".colorize(:light_magenta)
+    end
+  end
+
+  private
+
+  def display_song(song)
+    puts "\n" + "─" * 42
+    puts "  🎵  #{song[:title]}".colorize(:light_white)
+    puts "  👤  #{song[:artist]}".colorize(:light_white)
+    puts "  🔗  #{song[:url]}".colorize(:light_cyan) unless song[:url].to_s.empty?
+    puts "  💡  #{song[:reason]}".colorize(:light_yellow) if song[:reason]
+    puts "─" * 42
+  end
+
+  def prompt_choice(options)
+    valid_range = (1..options.length)
+    choice = nil
+
+    until valid_range.cover?(choice)
+      puts "\n"
+      options.each { |opt| puts opt }
+      print "\n  Enter a number (#{valid_range.min}-#{valid_range.max}): "
+      choice = gets&.to_i
+
+      unless valid_range.cover?(choice)
+        puts "  Invalid choice. Please enter a number between #{valid_range.min} and #{valid_range.max}.".colorize(:light_red)
+      end
     end
 
-    # until @choice2 = 1 to length of occasions(6), keep looping
-    # Inside the loops it keeps asking the user to select from a numbered list
-    def choose_occ
-        puts "What's the occasion?"
-        puts "\n"
-        until (1..@occasions.length).include? @choice2
-            @occasions.each do |item| puts("  " + item.colorize(:light_yellow)) end
-            puts "\nInput the number of your choice:"
-            @choice2 = gets.to_i
-
-            # if choice2 != 1 to length of moods(6) print err msg
-            if !(1..@occasions.length).include? @choice2
-                puts "Sorry, I couldn't read that input, please enter the number of your choice."
-                puts "\n"
-            end
-        end
-    end
-
-    def suggest_song
-        # receive mood or occasion choice, -1 to make it an arr index
-        @choice1 -= 1
-        # receive mood/occ categories choice, -1 to make it an arr index
-        @choice2 -= 1
-        # category variable = mood/occasion arr
-        category = @list_choice[@choice1]
-        # songs variable = moods/occasions arrays
-        songs = category[@choice2]
-        # song variable looks inside selected mood_cat or occasion_cat and picks a song
-        song = songs[(rand() * songs.length).to_i]
-        puts "\nBen & Mike suggest: #{song[0].colorize(:light_white)} by #{song[1].colorize(:light_white)}."
-        puts "You can listen to it here: #{song[2].colorize(:light_white)}"
-    end
-
-    def start_again?
-        puts "\nWould you like us to suggest another song?"
-        #until choice3 is = 1 or 2 ask for input
-        until [1, 2].include? @choice3
-            puts("\n  1. " + "Yes".colorize(:light_green))
-            puts("  2. " + "No".colorize(:light_red))
-            puts "\nInput 1 for Yes or 2 to exit."
-            @choice3 = gets.to_i
-            if @choice3 == 1
-                @jukebox_running = true
-            elsif @choice3 == 2
-                @jukebox_running = false
-            else 
-                puts "Sorry, I couldn't read that input, please enter the number of your choice."
-                puts "\n"   
-            end
-            #have to set choice1 and choice2 values to nil because it was predefined
-            @choice1 = nil
-            @choice2 = nil
-        end
-        #have to set choice3 to nil because it was predefined, so we can get a new input when we loop
-        @choice3 = nil
-    end
+    choice
+  end
 end
-

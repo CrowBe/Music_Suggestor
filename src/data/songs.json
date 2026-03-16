@@ -1,0 +1,78 @@
+{
+  "moods": {
+    "On top of the world": [
+      { "title": "Happy", "artist": "Pharrell Williams", "url": "https://www.youtube.com/watch?v=ZbZSe6N_BXs" },
+      { "title": "Hawaiian Roller Coaster Ride", "artist": "Mark Keali'i Ho'omalu", "url": "https://www.youtube.com/watch?v=KaLFZj3wPsc" },
+      { "title": "Walking on Sunshine", "artist": "Katrina and the Waves", "url": "https://www.youtube.com/watch?v=iPUmE-tne5U" },
+      { "title": "Good as Hell", "artist": "Lizzo", "url": "https://www.youtube.com/watch?v=SmbmeOgWsqE" }
+    ],
+    "Blue": [
+      { "title": "Blue (Da Ba Dee)", "artist": "Eiffel 65", "url": "https://www.youtube.com/watch?v=68ugkg9RePc" },
+      { "title": "Born To Die", "artist": "Lana Del Rey", "url": "https://www.youtube.com/watch?v=ORnYNaTZGUU" },
+      { "title": "The Night We Met", "artist": "Lord Huron", "url": "https://www.youtube.com/watch?v=KtlgYxa6BMU" },
+      { "title": "Skinny Love", "artist": "Bon Iver", "url": "https://www.youtube.com/watch?v=sldCiNG15jI" }
+    ],
+    "In love": [
+      { "title": "You Are The Sunshine Of My Life", "artist": "Stevie Wonder", "url": "https://www.youtube.com/watch?v=3wZ_b_uUAdQ" },
+      { "title": "Just The Way You Are", "artist": "Bruno Mars", "url": "https://www.youtube.com/watch?v=LjhCEhWiKXk" },
+      { "title": "Make You Feel My Love", "artist": "Adele", "url": "https://www.youtube.com/watch?v=0put0_a--Ng" },
+      { "title": "All of Me", "artist": "John Legend", "url": "https://www.youtube.com/watch?v=450p7goxZqg" }
+    ],
+    "Sleep deprived": [
+      { "title": "A Whole New World", "artist": "John McClung", "url": "https://www.youtube.com/watch?v=-GN997853gc" },
+      { "title": "Pua Lilelehua", "artist": "Keola Beamer", "url": "https://www.youtube.com/watch?v=s0WyqmvAg7o" },
+      { "title": "Weightless", "artist": "Marconi Union", "url": "https://www.youtube.com/watch?v=UfcAVejslrU" },
+      { "title": "Clair de Lune", "artist": "Claude Debussy", "url": "https://www.youtube.com/watch?v=CvFH_6DNRCY" }
+    ],
+    "Rage": [
+      { "title": "Kamikaze", "artist": "Eminem", "url": "https://www.youtube.com/watch?v=FhF9RwkHAJw" },
+      { "title": "Angel Of Death", "artist": "Slayer", "url": "https://www.youtube.com/watch?v=K6_zsJ8KPP0" },
+      { "title": "Break Stuff", "artist": "Limp Bizkit", "url": "https://www.youtube.com/watch?v=ZpUYjpKg9KY" },
+      { "title": "Killing in the Name", "artist": "Rage Against the Machine", "url": "https://www.youtube.com/watch?v=bWXazVhlyxQ" }
+    ],
+    "A little high": [
+      { "title": "Three Little Birds", "artist": "Bob Marley", "url": "https://www.youtube.com/watch?v=LanCLS_hIo4" },
+      { "title": "Party in My Tummy", "artist": "Yo Gabba Gabba!", "url": "https://www.youtube.com/watch?v=6Os-CACRwM8" },
+      { "title": "In the Air Tonight", "artist": "Phil Collins", "url": "https://www.youtube.com/watch?v=YkADj0TPrJA" },
+      { "title": "Comfortably Numb", "artist": "Pink Floyd", "url": "https://www.youtube.com/watch?v=_FrOQC-zEog" }
+    ]
+  },
+  "occasions": {
+    "Netflix & Chill": [
+      { "title": "Can't Get Enough Of Your Love Baby", "artist": "Barry White", "url": "https://www.youtube.com/watch?v=x0I6mhZ5wMw" },
+      { "title": "My Cherie Amour", "artist": "Stevie Wonder", "url": "https://www.youtube.com/watch?v=NW0YcO5P3OM" },
+      { "title": "Let's Get It On", "artist": "Marvin Gaye", "url": "https://www.youtube.com/watch?v=rBrdqM_X2EM" },
+      { "title": "Slow Hands", "artist": "Niall Horan", "url": "https://www.youtube.com/watch?v=mMnAPjOcJXM" }
+    ],
+    "Dance Battle": [
+      { "title": "It's Tricky", "artist": "Run-DMC", "url": "https://www.youtube.com/watch?v=l-O5IHVhWj0" },
+      { "title": "Boogie Shoes", "artist": "K.C. and Sunshine Band", "url": "https://www.youtube.com/watch?v=6m47EQtAMzI" },
+      { "title": "Get Low", "artist": "Lil Jon & The East Side Boyz", "url": "https://www.youtube.com/watch?v=GNHkGHAkhek" },
+      { "title": "Uptown Funk", "artist": "Mark Ronson ft. Bruno Mars", "url": "https://www.youtube.com/watch?v=OPf0YbXqDm0" }
+    ],
+    "Fantasy Board Game Night": [
+      { "title": "Concerning Hobbits", "artist": "Howard Shore", "url": "https://www.youtube.com/watch?v=0gLd7rpBJlY" },
+      { "title": "Carmina Burana", "artist": "Carl Orff", "url": "https://www.youtube.com/watch?v=GXFSK0ogeg4" },
+      { "title": "Dragonborn (Skyrim Theme)", "artist": "Jeremy Soule", "url": "https://www.youtube.com/watch?v=4z9TdDCWN7g" },
+      { "title": "Geralt of Rivia", "artist": "The Witcher 3 OST", "url": "https://www.youtube.com/watch?v=E0DKbLzHNx8" }
+    ],
+    "Cosplay Party": [
+      { "title": "Sailor Moon Theme", "artist": "Nicole and Brynne Price", "url": "https://www.youtube.com/watch?v=5txHGxJRwtQ" },
+      { "title": "Pokémon Theme", "artist": "Jason Paige", "url": "https://www.youtube.com/watch?v=rg6CiPI6h2g" },
+      { "title": "We Are Number One", "artist": "LazyTown", "url": "https://www.youtube.com/watch?v=hy3ElWuOQEY" },
+      { "title": "Gurren Lagann Theme", "artist": "Shoko Nakagawa", "url": "https://www.youtube.com/watch?v=Jf7-MBSmLv0" }
+    ],
+    "Fancy Dinner Party": [
+      { "title": "Impromptu in G flat major", "artist": "Franz Schubert", "url": "https://www.youtube.com/watch?v=Nt33K-HsOHA" },
+      { "title": "Piano Concerto No. 21 in C major", "artist": "Wolfgang Amadeus Mozart", "url": "https://www.youtube.com/watch?v=CVKpvD3X6EM" },
+      { "title": "La Vie en Rose", "artist": "Édith Piaf", "url": "https://www.youtube.com/watch?v=U9nPTZOHDo4" },
+      { "title": "Fly Me to the Moon", "artist": "Frank Sinatra", "url": "https://www.youtube.com/watch?v=ZEcqHA7dbwM" }
+    ],
+    "Hangin' Out With Garret": [
+      { "title": "Southern Nights", "artist": "Glen Campbell", "url": "https://www.youtube.com/watch?v=7wOUFo4Lwf8" },
+      { "title": "I Just Want To Dance With You", "artist": "George Strait", "url": "https://www.youtube.com/watch?v=HxxhNAyj3QQ" },
+      { "title": "Friends in Low Places", "artist": "Garth Brooks", "url": "https://www.youtube.com/watch?v=4Bnm7gsqFgI" },
+      { "title": "Take Me Home, Country Roads", "artist": "John Denver", "url": "https://www.youtube.com/watch?v=1vrEljMfXYo" }
+    ]
+  }
+}
