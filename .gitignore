@@ -1,0 +1,5 @@
+.env
+.bundle/
+vendor/
+.rspec_status
+coverage/
